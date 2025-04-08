@@ -1,10 +1,16 @@
+"use client";
+
 import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8">
+    <div className="relative min-h-screen">
       <Header />
-      {/* You can add more sections/components here */}
+
+      <main className="pt-20 container mx-auto max-w-7xl px-4 py-8">
+        <Hero />
+      </main>
     </div>
   );
 }
