@@ -120,3 +120,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+html {
+  @apply scroll-smooth;
+  font-size: 93.75%;
+}
+
+::-webkit-scrollbar {
+  @apply h-[0.5rem] w-[0.5rem] bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-xl bg-slate-400;
+}
