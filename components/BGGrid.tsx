@@ -1,20 +1,49 @@
 "use client";
 
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { CheckCheck, Code, Copy } from "lucide-react";
+import { useState } from "react";
 import { BackgroundType } from "@/lib/constants";
+import { CheckCircle } from "lucide-react";
 
 interface BackgroundGridProps {
   backgrounds: BackgroundType[];
   selectedBackground: BackgroundType;
   onSelect: (background: BackgroundType) => void;
+  onPreviewCode: (code: string) => void;
 }
-
 
 export default function BackgroundGrid({
   backgrounds,
   selectedBackground,
   onSelect,
+  onPreviewCode,
 }: BackgroundGridProps) {
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const copyToClipboard = async (
+    code: string,
+    id: string,
+    e: React.MouseEvent,
+  ) => {
+    e.stopPropagation();
+    await navigator.clipboard.writeText(code);
+    setCopiedId(id);
+    toast("Snippet copied to clipboard!", {
+      className:
+        "!bg-white dark:!bg-neutral-900 !text-neutral-900 dark:!text-neutral-200 !border !border-neutral-500 dark:!border-neutral-800 shadow",
+      icon: <CheckCircle className="h-4 w-4 text-green-500" />,
+    });
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  const handlePreviewCode = (code: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    onPreviewCode(code);
+  };
+
   return (
     <div>
       {backgrounds.length === 0 ? (
@@ -27,7 +56,7 @@ export default function BackgroundGrid({
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
           {backgrounds.map((background) => {
             return (
               <div
@@ -42,7 +71,35 @@ export default function BackgroundGrid({
               >
                 <div className="absolute inset-0">{background.component}</div>
 
-                {/* Background name */}
+                {/* Action buttons */}
+                <div className="absolute right-2 top-2 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90"
+                    onClick={(e) => handlePreviewCode(background.code, e)}
+                  >
+                    <Code className="h-4 w-4" />
+                    <span className="sr-only">View code</span>
+                  </Button>
+
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background/90"
+                    onClick={(e) =>
+                      copyToClipboard(background.code, background.id, e)
+                    }
+                  >
+                    {copiedId === background.id ? (
+                      <CheckCheck className="h-4 w-4 text-green-500" />
+                    ) : (
+                      <Copy className="h-4 w-4" />
+                    )}
+                    <span className="sr-only">Copy code</span>
+                  </Button>
+                </div>
+
                 <div className="absolute inset-x-0 bottom-0 p-2">
                   <span className="rounded-full bg-background/80 px-3 py-1.5 text-xs font-medium backdrop-blur-sm">
                     {background.name}
