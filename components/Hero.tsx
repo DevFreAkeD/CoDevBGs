@@ -6,9 +6,10 @@ import { BackgroundType } from "@/lib/constants";
 
 interface HeroProps {
   backgrounds: BackgroundType[];
+  onPreviewCode: (code: string) => void;
 }
 
-export default function Hero({ backgrounds }: HeroProps) {
+export default function Hero({ backgrounds, onPreviewCode }: HeroProps) {
   const [selectedBackground, setSelectedBackground] = useState<BackgroundType>(backgrounds[0]);
 
   return (
@@ -18,7 +19,7 @@ export default function Hero({ backgrounds }: HeroProps) {
 
       <div className="relative mx-auto mb-12 max-w-6xl text-center overflow-hidden">
         {/* Content */}
-        <div className="my-9 text-center relative z-10 px-4">
+        <div className="my-10 text-center relative z-10 px-4">
           <h1 className="mb-6 p-1 bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-sky-400 dark:to-teal-400 bg-clip-text text-4xl font-bold text-transparent md:text-5xl leading-tight">
             CoDevBGs – Modern Backgrounds
           </h1>
@@ -33,6 +34,7 @@ export default function Hero({ backgrounds }: HeroProps) {
           backgrounds={backgrounds}
           selectedBackground={selectedBackground}
           onSelect={setSelectedBackground}
+          onPreviewCode={onPreviewCode}
         />
       </div>
     </div>
