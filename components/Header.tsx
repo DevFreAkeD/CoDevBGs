@@ -5,7 +5,7 @@ import DarkModeToggle from "./DarkModeToggle";
 
 export default function Header() {
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
             <div className="w-full mx-auto px-4">
                 <div className="flex lg:mx-10 md:mx-5 h-16 items-center justify-between gap-4">
                     {/* Left Side (Logo) */}
