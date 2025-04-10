@@ -6,9 +6,9 @@ import Image from "next/image";
 
 export default function Header() {
     return (
-        <header className="container bg-background/30 backdrop-blur-xl border-b border-border">
-            <div className="w-full mx-auto px-4">
-                <div className="flex lg:mx-10 md:mx-5 h-16 items-center justify-between gap-4">
+        <header className="bg-background/30 backdrop-blur-xl border-b border-border">
+            <div className="container mx-auto px-4">
+            <div className="flex lg:mx-10 md:mx-5 h-16 items-center justify-between gap-4">
                     {/* Left Side (Logo) */}
                     <div className="flex items-center gap-4 flex-1">
                         <Link
