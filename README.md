@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CoDevBGs - Modern Backgrounds
 
-## Getting Started
+## 🧾 About
 
-First, run the development server:
+**CoDevBGs** is a free and open-source collection of modern, customizable background code snippets for developers. Designed to elevate your web projects, CoDevBGs offers a range of beautiful, responsive, and developer-friendly background styles. Whether you're prototyping a landing page or refining a production UI, these plug-and-play snippets are here to help you build visually striking interfaces effortlessly.
+Stunning backgrounds made for modern websites and apps. Theme-aware, easy to preview, and ready to copy-paste.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🎨 Curated collection of modern and aesthetic backgrounds
+- ⚡ Built using Tailwind CSS and React components
+- 🌀 Includes both static and animated designs
+- 📦 Easy to Preview, Ready-to-use and copy-paste components
+- 📱 Fully responsive and easily customizable
+- 💼 Perfect for portfolios, landing pages, dashboards, and more
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📜 License
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+MIT License. Free to use in personal and commercial projects.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2025 CoDevBGs | Made with ❤️ by **FreAkeD** | Powered by **CoDevCompile**
