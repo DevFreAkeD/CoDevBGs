@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import { backgrounds } from "@/lib/constants";
 import { useState } from "react";
 import CodePreview from "@/components/CodePreview";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [codePreviewOpen, setCodePreviewOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function Home() {
     <div className="relative min-h-screen">
       <Header />
 
-      <main className="pt-20 container mx-auto max-w-7xl px-4 py-8">
+      <main className="pt-4 container mx-auto max-w-7xl px-4 py-8">
         <Hero
           backgrounds={backgrounds}
           onPreviewCode={(code) => {
@@ -23,6 +24,9 @@ export default function Home() {
           }}
         />
       </main>
+
+      {/* Footer */}
+      <Footer />
       
       {/*Code Preview*/}
       <CodePreview
