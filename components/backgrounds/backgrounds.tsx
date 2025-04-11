@@ -429,7 +429,7 @@ export const SubtleIsometricGridBackground = () => {
 
 export const LaserRaysBackground = () => {
   return (
-    <div className="absolute inset-0 bg-black overflow-hidden z-0">
+    <div className="absolute bg-white dark:bg-black inset-0 overflow-hidden z-0">
       {/* Horizontal Beams: Left → Right */}
       {[2, 5, 8, 11].map((i, idx) => (
         <div
@@ -573,16 +573,16 @@ export const SolarSystemBackground = () => {
   ];
 
   return (
-    <div className="absolute inset-0 bg-black overflow-hidden z-[-1]">
-      {/* Nebula gradient backdrop */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0c0f29] via-[#1b0044] to-[#000000] opacity-90" />
+    <div className="absolute inset-0 overflow-hidden z-[-1] bg-white dark:bg-black">
+      {/* 🟣 Unique nebula gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#ffffff] via-[#e0dfff] to-[#f4faff] dark:from-[#3a007d] dark:via-[#1c004a] dark:to-[#0e001f] opacity-90" />
 
-      {/* Random twinkling stars */}
+      {/* ✨ Stars */}
       <div className="absolute inset-0">
         {[...Array(120)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-[1px] h-[1px] bg-white opacity-50 animate-pulse"
+            className="absolute w-[1px] h-[1px] bg-black/20 dark:bg-white opacity-40 animate-pulse"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
@@ -593,7 +593,7 @@ export const SolarSystemBackground = () => {
         ))}
       </div>
 
-      {/* Central solar system */}
+      {/* 🌞 SVG Solar System */}
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 500 500"
@@ -604,6 +604,15 @@ export const SolarSystemBackground = () => {
             <stop offset="0%" stopColor="#ffcc00" stopOpacity="1" />
             <stop offset="100%" stopColor="#ffcc00" stopOpacity="0" />
           </radialGradient>
+
+          {/* Glow filter for planets */}
+          <filter id="planet-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </defs>
 
         {/* Sun */}
@@ -618,12 +627,12 @@ export const SolarSystemBackground = () => {
             cy="250"
             r={orbit.radius}
             fill="none"
-            stroke="rgba(255,255,255,0.08)"
             strokeDasharray="2 4"
+            className="stroke-gray-300 dark:stroke-white/10"
           />
         ))}
 
-        {/* Rotating Planets */}
+        {/* Glowing Planets */}
         {orbits.map((orbit, i) => (
           <g key={`planet-${i}`}>
             <animateTransform
@@ -641,23 +650,25 @@ export const SolarSystemBackground = () => {
               fill={orbit.color}
               stroke="white"
               strokeWidth="0.3"
+              filter="url(#planet-glow)"
             />
           </g>
         ))}
       </svg>
 
-      {/* Galactic glow overlays */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(128,0,255,0.08),transparent_70%)] pointer-events-none mix-blend-screen" />
+      {/* 💫 Space overlays */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(128,0,255,0.07),transparent_70%)] pointer-events-none mix-blend-screen" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(0,200,255,0.06),transparent_70%)] pointer-events-none mix-blend-screen" />
 
-      {/* Nebula mist blur effect */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.02),transparent_60%)] blur-3xl mix-blend-soft-light pointer-events-none" />
+      {/* 🌀 Soft glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.04),transparent_60%)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.02),transparent_60%)] blur-3xl mix-blend-soft-light pointer-events-none" />
 
-      {/* Outer glow frame */}
-      <div className="absolute inset-0 border border-white/5 rounded-xl blur pointer-events-none" />
+      {/* Frame halo */}
+      <div className="absolute inset-0 border border-black/5 dark:border-white/10 rounded-xl blur pointer-events-none" />
     </div>
   );
 };
+
 
 export const MultiverseBackground = () => {
   const universes = Array.from({ length: 12 }, () => ({
@@ -669,16 +680,16 @@ export const MultiverseBackground = () => {
   }));
 
   return (
-    <div className="absolute inset-0 bg-black overflow-hidden z-[-1]">
-      {/* 🌌 Deep space background - new color scheme */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#050d1a] via-[#0a0034] to-[#001f1f] opacity-90" />
+    <div className="absolute inset-0 overflow-hidden z-[-1]">
+      {/* 🌌 Space background gradient for light/dark */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#e6f0ff] via-[#f7faff] to-[#dceeff] dark:from-[#050d1a] dark:via-[#0a0034] dark:to-[#001f1f] opacity-90" />
 
       {/* ✨ Starfield */}
       <div className="absolute inset-0">
         {[...Array(180)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-[1px] h-[1px] bg-white opacity-40 animate-pulse"
+            className="absolute w-[1px] h-[1px] bg-black/20 dark:bg-white opacity-40 animate-pulse"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
@@ -689,17 +700,22 @@ export const MultiverseBackground = () => {
         ))}
       </div>
 
-      {/* 🌀 Scattered universes */}
+      {/* 🌀 Universes scattered around */}
       {universes.map((uni, i) => (
         <div
           key={i}
-          className="absolute rounded-full border border-white/10 shadow-2xl"
+          className="absolute rounded-full shadow-xl border border-black/10 dark:border-white/10"
           style={{
             width: `${uni.r * 2}px`,
             height: `${uni.r * 2}px`,
             left: `${uni.x}%`,
             top: `${uni.y}%`,
-            background: `radial-gradient(circle at 30% 30%, ${uni.color}, #000)`,
+            background: `radial-gradient(circle at 30% 30%, ${uni.color}, ${
+              // darken center if light mode
+              typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: light)').matches
+                ? '#444'
+                : '#000'
+            })`,
             animation: `floatY ${uni.duration}s ease-in-out infinite alternate`,
             transformOrigin: 'center',
           }}
@@ -710,7 +726,7 @@ export const MultiverseBackground = () => {
       {[...Array(5)].map((_, i) => (
         <div
           key={i}
-          className="absolute w-20 h-20 rounded-full blur-xl opacity-30 animate-ping"
+          className="absolute w-20 h-20 rounded-full blur-xl opacity-30 animate-ping mix-blend-overlay"
           style={{
             top: `${Math.random() * 80 + 10}%`,
             left: `${Math.random() * 80 + 10}%`,
@@ -720,17 +736,17 @@ export const MultiverseBackground = () => {
         />
       ))}
 
-      {/* 💫 Galactic overlays */}
+      {/* 💫 Nebula-like overlays */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(0,255,255,0.07),transparent_60%)] mix-blend-screen pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_85%,rgba(255,0,255,0.04),transparent_60%)] mix-blend-screen pointer-events-none" />
 
-      {/* Soft lens glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.02),transparent_60%)] blur-2xl mix-blend-soft-light pointer-events-none" />
+      {/* 🌟 Soft glow for depth */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.04),transparent_70%)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.02),transparent_70%)] blur-2xl mix-blend-soft-light pointer-events-none" />
 
-      {/* Frame blur */}
-      <div className="absolute inset-0 border border-white/10 rounded-xl blur pointer-events-none" />
+      {/* Frame blur & boundary effect */}
+      <div className="absolute inset-0 border border-black/5 dark:border-white/10 rounded-xl blur pointer-events-none" />
 
-      {/* Animation keyframes */}
+      {/* Animations */}
       <style jsx>{`
         @keyframes floatY {
           0% {
