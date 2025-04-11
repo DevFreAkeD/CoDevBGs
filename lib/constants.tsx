@@ -5,6 +5,9 @@ import {
   GradientWithBlobBackground,
   HexagonGridBackground,
   GridFinanceBackground,
+  LaserRaysBackground,
+  SolarSystemBackground,
+  MultiverseBackground,
 } from "@/components/backgrounds/backgrounds";
 
 export type BackgroundType = {
@@ -16,39 +19,244 @@ export type BackgroundType = {
 
 export const backgrounds: BackgroundType[] = [
   {
+    id: "solar-system",
+    name: "Solar System",
+    component: <SolarSystemBackground />,
+    code: `// Solar System Background`
+  },
+  {
+    id: "laser-rays",
+    name: "Laser Rays",
+    component: <LaserRaysBackground />,
+    code: `// Laser Rays Background
+<div className="absolute inset-0 bg-black overflow-hidden z-[-1]">
+  <svg
+    className="absolute inset-0 h-full w-full"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="laser-beam" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#0ff" stopOpacity="1" />
+        <stop offset="50%" stopColor="#0ff" stopOpacity="0.6" />
+        <stop offset="100%" stopColor="#0ff" stopOpacity="0" />
+      </linearGradient>
+  
+      <pattern
+        id="laserPattern"
+        width="60"
+        height="100%"
+        patternUnits="userSpaceOnUse"
+      >
+        <rect
+          x="25"
+          width="10"
+          height="100%"
+          fill="url(#laser-beam)"
+        >
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            from="0 -100%"
+            to="0 100%"
+            dur="1.5s"
+            repeatCount="indefinite"
+          />
+        </rect>
+      </pattern>
+    </defs>
+  
+  <rect width="100%" height="100%" fill="url(#laserPattern)" />
+  </svg>
+  
+  {/* Glow pulse layer */}
+  <div className="absolute inset-0 animate-pulse bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.08),transparent_70%)]" />
+  
+  {/* Optional neon edge glow */}
+  <div className="pointer-events-none absolute inset-0 border-2 border-cyan-500/10 rounded-xl blur-sm" />
+</div>`
+  },
+  {
+    id: "multiverse",
+    name: "Multiverse",
+    component: <MultiverseBackground />,
+    code: `// Solar System Background`
+  },
+  {
     id: "binary-rain",
     name: "Binary Rain",
     component: <BinaryRainBackground />,
-    code: `// Binary Rain Background\n${BinaryRainBackground.toString()}`,
+    code: `// Binary Rain Background
+
+<div className="absolute inset-0 overflow-hidden bg-white dark:bg-gray-950">
+  <div className="absolute inset-0 opacity-5 dark:opacity-10">
+    {/* Static binary elements with CSS animations */}
+    <div className="animate-binary-fade absolute left-[10%] top-[15%] font-mono text-xs text-gray-900 dark:text-gray-200">0</div>
+    <div className="animate-binary-fade absolute left-[20%] top-[25%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "1.5s" }}>1</div>
+    <div className="animate-binary-fade absolute left-[30%] top-[45%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "2.2s" }}>0</div>
+    <div className="animate-binary-fade absolute left-[40%] top-[65%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "0.7s" }}>1</div>
+    <div className="animate-binary-fade absolute left-[50%] top-[85%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "3.1s" }}>0</div>
+    <div className="animate-binary-fade absolute left-[60%] top-[35%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "1.8s" }}>1</div>
+    <div className="animate-binary-fade absolute left-[70%] top-[55%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "2.5s" }}>0</div>
+    <div className="animate-binary-fade absolute left-[80%] top-[75%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "0.9s" }}>1</div>
+    <div className="animate-binary-fade absolute left-[90%] top-[5%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "1.2s" }}>0</div>
+    <div className="animate-binary-fade absolute left-[15%] top-[30%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "2.8s" }}>1</div>
+    <div className="animate-binary-fade absolute left-[25%] top-[50%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "1.1s" }}>0</div>
+    <div className="animate-binary-fade absolute left-[35%] top-[70%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "3.4s" }}>1</div>
+    <div className="animate-binary-fade absolute left-[45%] top-[90%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "0.5s" }}>0</div>
+    <div className="animate-binary-fade absolute left-[55%] top-[10%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "2.1s" }}>1</div>
+    <div className="animate-binary-fade absolute left-[65%] top-[40%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "1.7s" }}>0</div>
+    <div className="animate-binary-fade absolute left-[75%] top-[60%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "2.9s" }}>1</div>
+    <div className="animate-binary-fade absolute left-[85%] top-[80%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "0.3s" }}>0</div>
+    <div className="animate-binary-fade absolute left-[95%] top-[20%] font-mono text-xs text-gray-900 dark:text-gray-200" style={{ animationDelay: "1.4s" }}>1</div>
+  </div>
+
+  {/* Tech-themed radial gradients */}
+  <div className="absolute inset-0">
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_30%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_30%)]" />
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(124,58,237,0.1),transparent_30%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(124,58,237,0.15),transparent_30%)]" />
+  </div>
+
+  {/* Circuit Lines */}
+  <div className="absolute inset-0 overflow-hidden opacity-10 dark:opacity-20">
+    <svg width="100%" height="100%" className="absolute">
+      <pattern id="circuit-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <path
+          d="M0 50h40c5.5 0 10 4.5 10 10s4.5 10 10 10h40M50 0v40c0 5.5 4.5 10 10 10s10 4.5 10 10v40"
+          stroke="currentColor"
+          strokeWidth="1"
+          fill="none"
+          className="text-gray-400 dark:text-gray-600"
+        />
+      </pattern>
+      <rect width="100%" height="100%" fill="url(#circuit-pattern)" />
+    </svg>
+  </div>
+</div>`,
   },
   {
     id: "soft-gradient-waves",
     name: "Soft Gradient Waves",
     component: <SoftGradientWavesBackground />,
-    code: `// Soft Gradient Waves\n${SoftGradientWavesBackground.toString()}`,
+    code: `// Soft Gradient Waves
+
+<div className="absolute inset-0 overflow-hidden bg-white dark:bg-gray-950">
+  <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50 dark:from-gray-950 dark:to-blue-950/20" />
+  <svg
+    className="absolute bottom-0 left-0 right-0 w-full opacity-30"
+    viewBox="0 0 1200 200"
+    preserveAspectRatio="none"
+  >
+    <path
+      d="M0,100 C300,20 600,180 1200,100 L1200,200 L0,200 Z"
+      className="fill-blue-200 dark:fill-blue-800/30"
+    />
+    <path
+      d="M0,120 C500,60 700,180 1200,120 L1200,200 L0,200 Z"
+      className="fill-blue-300 dark:fill-blue-700/30"
+    />
+    <path
+      d="M0,150 C400,100 800,180 1200,150 L1200,200 L0,200 Z"
+      className="fill-blue-400 dark:fill-blue-600/30"
+    />
+  </svg>
+</div>`,
   },
   {
     id: "minimal-dots-grid",
     name: "Minimal Dots Grid",
     component: <MinimalDotsGridBackground />,
-    code: `// Minimal Dots Grid\n${MinimalDotsGridBackground.toString()}`,
-  },
+    code: `// Minimal Dots Grid
+  
+<div className="absolute inset-0 overflow-hidden bg-white dark:bg-gray-950">
+  <div
+    className="absolute inset-0"
+    style={{
+      backgroundImage: \`
+        radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+        radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
+      \`,
+      backgroundSize: "40px 40px, 20px 20px",
+      backgroundPosition: "0 0, 20px 20px",
+    }}
+  />
+</div>`,
+  },  
   {
     id: "grid-finance",
     name: "Grid Finance",
     component: <GridFinanceBackground />,
-    code: `// Grid Finance Background\n${GridFinanceBackground.toString()}`,
+    code: `// Grid Finance Background
+
+<div className="absolute inset-0 overflow-hidden bg-white dark:bg-gray-950">
+  <div className="absolute inset-0 opacity-5 dark:opacity-10">
+    <svg width="100%" height="100%">
+      <pattern
+        id="grid-finance"
+        x="0"
+        y="0"
+        width="40"
+        height="40"
+        patternUnits="userSpaceOnUse"
+      >
+        <path
+          d="M 40 0 L 0 0 0 40"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          className="text-gray-500 dark:text-gray-400"
+        />
+      </pattern>
+      <rect width="100%" height="100%" fill="url(#grid-finance)" />
+    </svg>
+  </div>
+</div>`,
   },
   {
     id: "gradient-with-blob",
     name: "Gradient with Blob",
     component: <GradientWithBlobBackground />,
-    code: `// Gradient with Blob\n${GradientWithBlobBackground.toString()}`,
+    code: `// Gradient with Blob
+
+<div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-white to-gray-100 dark:from-gray-950 dark:to-gray-900">
+  <div className="absolute -right-1/4 top-0 aspect-square w-1/2 rounded-full bg-gradient-to-br from-emerald-200/40 to-teal-300/40 blur-3xl dark:from-emerald-800/20 dark:to-teal-700/20" />
+  <div className="absolute -bottom-1/4 -left-1/4 aspect-square w-1/2 rounded-full bg-gradient-to-br from-blue-200/40 to-indigo-300/40 blur-3xl dark:from-blue-800/20 dark:to-indigo-700/20" />
+</div>`,
   },
   {
     id: "hexagon-grid",
     name: "Hexagon Grid",
     component: <HexagonGridBackground />,
-    code: `// Hexagon Grid Background\n${HexagonGridBackground.toString()}`,
+    code: `// Hexagon Grid Background
+
+<div className="absolute inset-0 overflow-hidden bg-white dark:bg-gray-950">
+  <svg
+    className="absolute inset-0 h-full w-full opacity-10 dark:opacity-20"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="none"
+  >
+    <pattern
+      id="hexagon-pattern"
+      x="0"
+      y="0"
+      width="16"
+      height="28"
+      patternUnits="userSpaceOnUse"
+    >
+      <path
+        d="M8 2L14 8L14 20L8 26L2 20L2 8L8 2Z"
+        className="stroke-gray-400 dark:stroke-gray-600"
+        strokeWidth="0.5"
+        fill="none"
+      />
+    </pattern>
+    <rect
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+      fill="url(#hexagon-pattern)"
+    />
+  </svg>
+</div>`,
   },
 ];

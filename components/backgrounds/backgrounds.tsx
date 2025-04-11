@@ -377,3 +377,370 @@ export const GridFinanceBackground = () => {
     </div>
   );
 };
+
+// Subtle Topography
+export const SubtleTopographyBackground = () => {
+  return (
+    <div className="absolute inset-0 bg-white dark:bg-gray-950">
+      <svg
+        className="absolute inset-0 h-full w-full opacity-[0.15] dark:opacity-[0.07]"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <filter id="noise">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.65"
+            numOctaves="3"
+            stitchTiles="stitch"
+          />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noise)" />
+      </svg>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(153,246,228,0.15),transparent_40%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.12),transparent_40%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(253,224,71,0.08),transparent_40%)] dark:bg-[radial-gradient(circle_at_70%_60%,rgba(250,204,21,0.08),transparent_40%)]" />
+    </div>
+  );
+};
+
+// Subtle Isometric Grid
+export const SubtleIsometricGridBackground = () => {
+  return (
+    <div className="absolute inset-0 bg-white dark:bg-gray-950">
+      <div
+        className="absolute inset-0 opacity-[0.15] dark:opacity-[0.07]"
+        style={{
+          backgroundImage: `
+            linear-gradient(30deg, #808080 12%, transparent 12.5%, transparent 87%, #808080 87.5%, #808080),
+            linear-gradient(150deg, #808080 12%, transparent 12.5%, transparent 87%, #808080 87.5%, #808080),
+            linear-gradient(30deg, #808080 12%, transparent 12.5%, transparent 87%, #808080 87.5%, #808080),
+            linear-gradient(150deg, #808080 12%, transparent 12.5%, transparent 87%, #808080 87.5%, #808080),
+            linear-gradient(60deg, #80808077 25%, transparent 25.5%, transparent 75%, #80808077 75%, #80808077),
+            linear-gradient(60deg, #80808077 25%, transparent 25.5%, transparent 75%, #80808077 75%, #80808077)
+          `,
+          backgroundSize: "40px 70px",
+          backgroundPosition: "0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px",
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-white/0 to-white dark:from-gray-950 dark:via-gray-950/0 dark:to-gray-950" />
+    </div>
+  );
+};
+
+export const LaserRaysBackground = () => {
+  return (
+    <div className="absolute inset-0 bg-black overflow-hidden z-0">
+      {/* Horizontal Beams: Left → Right */}
+      {[2, 5, 8, 11].map((i, idx) => (
+        <div
+          key={`beam-h-lr-${i}`}
+          className="absolute w-[200px] h-px bg-gradient-to-r from-transparent via-cyan-400 to-cyan-200 animate-beam-h"
+          style={{
+            top: `${i * 40}px`,
+            left: '-200px',
+            animationDelay: `${idx * 1.5}s`,
+          }}
+        />
+      ))}
+
+      {/* Horizontal Beams: Right → Left */}
+      {[1, 4, 7, 10].map((i, idx) => (
+        <div
+          key={`beam-h-rl-${i}`}
+          className="absolute w-[200px] h-px bg-gradient-to-l from-transparent via-purple-400 to-purple-200 animate-beam-h-reverse"
+          style={{
+            top: `${i * 40}px`,
+            right: '-200px',
+            animationDelay: `${idx * 1.5 + 0.8}s`,
+          }}
+        />
+      ))}
+
+      {/* Vertical Beams: Top → Bottom (on the RIGHT side)*/}
+      {[5, 10, 15, 20].map((i, idx) => (
+        <div
+          key={`beam-v-tb-${i}`}
+          className="absolute h-[200px] w-px bg-gradient-to-b from-transparent via-pink-400 to-pink-200 animate-beam-v"
+          style={{
+            left: `calc(100% - ${i * 40}px)`,
+            top: '-200px',
+            animationDelay: `${idx * 1.4}s`,
+          }}
+        />
+      ))}
+
+      {/* Vertical Beams: Bottom → Top (on the LEFT side)*/}
+      {[7, 13, 17, 22].map((i, idx) => (
+        <div
+          key={`beam-v-bt-${i}`}
+          className="absolute h-[200px] w-px bg-gradient-to-t from-transparent via-emerald-400 to-emerald-200 animate-beam-v-reverse"
+          style={{
+            left: `${i * 40}px`,
+            bottom: '-200px',
+            animationDelay: `${idx * 1.4 + 0.9}s`,
+          }}
+        />
+      ))}
+
+      {/* Animations */}
+      <style jsx>{`
+        @keyframes beam-h {
+          0% {
+            transform: translateX(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(1500px);
+            opacity: 0;
+          }
+        }
+
+        @keyframes beam-h-reverse {
+          0% {
+            transform: translateX(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(-1500px);
+            opacity: 0;
+          }
+        }
+
+        @keyframes beam-v {
+          0% {
+            transform: translateY(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(1000px);
+            opacity: 0;
+          }
+        }
+
+        @keyframes beam-v-reverse {
+          0% {
+            transform: translateY(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-1000px);
+            opacity: 0;
+          }
+        }
+
+        .animate-beam-h {
+          animation: beam-h 6s linear infinite;
+        }
+
+        .animate-beam-h-reverse {
+          animation: beam-h-reverse 6s linear infinite;
+        }
+
+        .animate-beam-v {
+          animation: beam-v 6s linear infinite;
+        }
+
+        .animate-beam-v-reverse {
+          animation: beam-v-reverse 6s linear infinite;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export const SolarSystemBackground = () => {
+  const orbits = [
+    { radius: 40, duration: 4, color: '#7FDBFF', size: 5 },
+    { radius: 65, duration: 6, color: '#FFDC00', size: 3 },
+    { radius: 90, duration: 9, color: '#2ECC40', size: 6 },
+    { radius: 115, duration: 12, color: '#B10DC9', size: 7 },
+    { radius: 140, duration: 16, color: '#FF4136', size: 10 },
+    { radius: 165, duration: 20, color: '#FF851B', size: 9 },
+    { radius: 190, duration: 24, color: '#AAAAAA', size: 11 },
+    { radius: 215, duration: 30, color: '#F012BE', size: 9 },
+  ];
+
+  return (
+    <div className="absolute inset-0 bg-black overflow-hidden z-[-1]">
+      {/* Nebula gradient backdrop */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0c0f29] via-[#1b0044] to-[#000000] opacity-90" />
+
+      {/* Random twinkling stars */}
+      <div className="absolute inset-0">
+        {[...Array(120)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-[1px] h-[1px] bg-white opacity-50 animate-pulse"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDuration: `${1 + Math.random() * 2}s`,
+              opacity: Math.random(),
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Central solar system */}
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 500 500"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <radialGradient id="sun-glow" r="50%">
+            <stop offset="0%" stopColor="#ffcc00" stopOpacity="1" />
+            <stop offset="100%" stopColor="#ffcc00" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* Sun */}
+        <circle cx="250" cy="250" r="30" fill="#ffcc00" />
+        <circle cx="250" cy="250" r="90" fill="url(#sun-glow)" />
+
+        {/* Orbits */}
+        {orbits.map((orbit, i) => (
+          <circle
+            key={`orbit-${i}`}
+            cx="250"
+            cy="250"
+            r={orbit.radius}
+            fill="none"
+            stroke="rgba(255,255,255,0.08)"
+            strokeDasharray="2 4"
+          />
+        ))}
+
+        {/* Rotating Planets */}
+        {orbits.map((orbit, i) => (
+          <g key={`planet-${i}`}>
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 250 250"
+              to="360 250 250"
+              dur={`${orbit.duration}s`}
+              repeatCount="indefinite"
+            />
+            <circle
+              cx={250 + orbit.radius}
+              cy={250}
+              r={orbit.size}
+              fill={orbit.color}
+              stroke="white"
+              strokeWidth="0.3"
+            />
+          </g>
+        ))}
+      </svg>
+
+      {/* Galactic glow overlays */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(128,0,255,0.08),transparent_70%)] pointer-events-none mix-blend-screen" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(0,200,255,0.06),transparent_70%)] pointer-events-none mix-blend-screen" />
+
+      {/* Nebula mist blur effect */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.02),transparent_60%)] blur-3xl mix-blend-soft-light pointer-events-none" />
+
+      {/* Outer glow frame */}
+      <div className="absolute inset-0 border border-white/5 rounded-xl blur pointer-events-none" />
+    </div>
+  );
+};
+
+export const MultiverseBackground = () => {
+  const universes = Array.from({ length: 12 }, () => ({
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    r: 12 + Math.random() * 20,
+    color: `hsl(${Math.floor(Math.random() * 360)}, 100%, 70%)`,
+    duration: 8 + Math.random() * 6,
+  }));
+
+  return (
+    <div className="absolute inset-0 bg-black overflow-hidden z-[-1]">
+      {/* 🌌 Deep space background - new color scheme */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#050d1a] via-[#0a0034] to-[#001f1f] opacity-90" />
+
+      {/* ✨ Starfield */}
+      <div className="absolute inset-0">
+        {[...Array(180)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-[1px] h-[1px] bg-white opacity-40 animate-pulse"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDuration: `${1.5 + Math.random() * 2}s`,
+              opacity: Math.random(),
+            }}
+          />
+        ))}
+      </div>
+
+      {/* 🌀 Scattered universes */}
+      {universes.map((uni, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full border border-white/10 shadow-2xl"
+          style={{
+            width: `${uni.r * 2}px`,
+            height: `${uni.r * 2}px`,
+            left: `${uni.x}%`,
+            top: `${uni.y}%`,
+            background: `radial-gradient(circle at 30% 30%, ${uni.color}, #000)`,
+            animation: `floatY ${uni.duration}s ease-in-out infinite alternate`,
+            transformOrigin: 'center',
+          }}
+        />
+      ))}
+
+      {/* 🌠 Wormholes */}
+      {[...Array(5)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute w-20 h-20 rounded-full blur-xl opacity-30 animate-ping"
+          style={{
+            top: `${Math.random() * 80 + 10}%`,
+            left: `${Math.random() * 80 + 10}%`,
+            background: `conic-gradient(from 0deg, #0ff, #f0f, #0ff)`,
+            animationDuration: `${6 + i * 2}s`,
+          }}
+        />
+      ))}
+
+      {/* 💫 Galactic overlays */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(0,255,255,0.07),transparent_60%)] mix-blend-screen pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_85%,rgba(255,0,255,0.04),transparent_60%)] mix-blend-screen pointer-events-none" />
+
+      {/* Soft lens glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.02),transparent_60%)] blur-2xl mix-blend-soft-light pointer-events-none" />
+
+      {/* Frame blur */}
+      <div className="absolute inset-0 border border-white/10 rounded-xl blur pointer-events-none" />
+
+      {/* Animation keyframes */}
+      <style jsx>{`
+        @keyframes floatY {
+          0% {
+            transform: translateY(0px) scale(1);
+          }
+          100% {
+            transform: translateY(-20px) scale(1.03);
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
