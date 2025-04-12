@@ -383,7 +383,7 @@ export const SubtleTopographyBackground = () => {
   return (
     <div className="absolute inset-0 bg-white dark:bg-gray-950">
       <svg
-        className="absolute inset-0 h-full w-full opacity-[0.15] dark:opacity-[0.07]"
+        className="absolute inset-0 h-full w-full opacity-[0.15] dark:opacity-[0.07] animate-noise"
         xmlns="http://www.w3.org/2000/svg"
       >
         <filter id="noise">
@@ -392,13 +392,66 @@ export const SubtleTopographyBackground = () => {
             baseFrequency="0.65"
             numOctaves="3"
             stitchTiles="stitch"
+            result="turbulence"
+          />
+          <feDisplacementMap
+            in="turbulence"
+            scale="5"
+            xChannelSelector="R"
+            yChannelSelector="G"
           />
           <feColorMatrix type="saturate" values="0" />
         </filter>
         <rect width="100%" height="100%" filter="url(#noise)" />
       </svg>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(153,246,228,0.15),transparent_40%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.12),transparent_40%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(253,224,71,0.08),transparent_40%)] dark:bg-[radial-gradient(circle_at_70%_60%,rgba(250,204,21,0.08),transparent_40%)]" />
+
+      <div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(153,246,228,0.15),transparent_40%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.12),transparent_40%)] animate-gradient1"
+      />
+      <div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(253,224,71,0.08),transparent_40%)] dark:bg-[radial-gradient(circle_at_70%_60%,rgba(250,204,21,0.08),transparent_40%)] animate-gradient2"
+      />
+
+      <style jsx>{`
+        @keyframes noise {
+          0% {
+            filter: url('#noise') baseFrequency="0.65";
+          }
+          100% {
+            filter: url('#noise') baseFrequency="0.8";
+          }
+        }
+
+        @keyframes moveGradient1 {
+          0% {
+            background-position: 30% 20%;
+          }
+          100% {
+            background-position: 70% 60%;
+          }
+        }
+
+        @keyframes moveGradient2 {
+          0% {
+            background-position: 70% 60%;
+          }
+          100% {
+            background-position: 30% 80%;
+          }
+        }
+
+        .animate-noise {
+          animation: noise 30s infinite linear;
+        }
+
+        .animate-gradient1 {
+          animation: moveGradient1 15s infinite alternate ease-in-out;
+        }
+
+        .animate-gradient2 {
+          animation: moveGradient2 15s infinite alternate ease-in-out;
+        }
+      `}</style>
     </div>
   );
 };
@@ -757,6 +810,83 @@ export const MultiverseBackground = () => {
           }
         }
       `}</style>
+    </div>
+  );
+};
+
+export const RBGInfinityBeamsBackground = () => {
+  return (
+    <div className="absolute bg-white dark:bg-black inset-0 overflow-hidden z-0">
+      <svg
+        viewBox="0 0 800 400"
+        className="absolute w-full h-full"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="rgb-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="red">
+              <animate
+                attributeName="stop-color"
+                values="red;green;blue;red"
+                dur="6s"
+                repeatCount="indefinite"
+              />
+            </stop>
+            <stop offset="50%" stopColor="green">
+              <animate
+                attributeName="stop-color"
+                values="green;blue;red;green"
+                dur="6s"
+                repeatCount="indefinite"
+              />
+            </stop>
+            <stop offset="100%" stopColor="blue">
+              <animate
+                attributeName="stop-color"
+                values="blue;red;green;blue"
+                dur="6s"
+                repeatCount="indefinite"
+              />
+            </stop>
+          </linearGradient>
+
+          <filter id="rgb-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Infinity Path */}
+        <path
+          d="M100,200 C100,100 300,100 400,200 C500,300 700,300 700,200
+            C700,100 500,100 400,200 C300,300 100,300 100,200 Z"
+          fill="none"
+          stroke="url(#rgb-gradient)"
+          strokeWidth="8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          filter="url(#rgb-glow)"
+        >
+          <animate
+            attributeName="stroke-dasharray"
+            values="0,1800;900,900;0,1800"
+            dur="5s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="stroke-dashoffset"
+            values="0;-1800"
+            dur="5s"
+            repeatCount="indefinite"
+          />
+        </path>
+      </svg>
+
+      {/* Subtle ambient glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.02),transparent_70%)] blur-3xl pointer-events-none mix-blend-screen" />
     </div>
   );
 };
