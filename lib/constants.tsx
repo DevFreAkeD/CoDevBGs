@@ -270,13 +270,115 @@ const universes = Array.from({ length: 12 }, () => ({
   </div>`
   },
   {
+    id: "subtle-topography-background",
+    name: "Subtle Topography",
+    component: <SubtleTopographyBackground />,
+    code: `// Subtle Topography Background
+<div className="absolute inset-0 bg-white dark:bg-gray-950">
+  <svg
+    className="absolute inset-0 h-full w-full opacity-[0.15] dark:opacity-[0.07] animate-noise"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <filter id="noise">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.65"
+        numOctaves="3"
+        stitchTiles="stitch"
+        result="turbulence"
+      />
+      <feDisplacementMap
+        in="turbulence"
+        scale="5"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noise)" />
+  </svg>
+
+  <div
+    className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(153,246,228,0.15),transparent_40%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.12),transparent_40%)] animate-gradient1"
+  />
+  <div
+    className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(253,224,71,0.08),transparent_40%)] dark:bg-[radial-gradient(circle_at_70%_60%,rgba(250,204,21,0.08),transparent_40%)] animate-gradient2"
+  />
+
+  <style jsx>{\`
+    @keyframes noise {
+      0% {
+        filter: url('#noise') baseFrequency="0.65";
+      }
+      100% {
+        filter: url('#noise') baseFrequency="0.8";
+      }
+    }
+
+    @keyframes moveGradient1 {
+      0% {
+        background-position: 30% 20%;
+      }
+      100% {
+        background-position: 70% 60%;
+      }
+    }
+
+    @keyframes moveGradient2 {
+      0% {
+        background-position: 70% 60%;
+      }
+      100% {
+        background-position: 30% 80%;
+      }
+    }
+
+    .animate-noise {
+      animation: noise 30s infinite linear;
+    }
+
+    .animate-gradient1 {
+      animation: moveGradient1 15s infinite alternate ease-in-out;
+    }
+
+    .animate-gradient2 {
+      animation: moveGradient2 15s infinite alternate ease-in-out;
+    }
+  \`}</style>
+</div>`
+  },
+  {
     id: "rbg-infinity-beams",
     name: "RBG Infinity Beams",
     component: <RBGInfinityBeamsBackground />,
-    code: `// Solar System Background`
+    code: `// Infinity Beams Background`
   },
   {
-    id: "subtle-topography-bacground",
+    id: "subtle-isometric-bg",
+    name: "Subtle Isometric Grid",
+    component: <SubtleIsometricGridBackground />,
+    code: `// Subtle Isometric Background
+<div className="absolute inset-0 bg-white dark:bg-gray-950">
+  <div
+    className="absolute inset-0 opacity-[0.15] dark:opacity-[0.07]"
+    style={{
+      backgroundImage: \`
+        linear-gradient(30deg, #808080 12%, transparent 12.5%, transparent 87%, #808080 87.5%, #808080),
+        linear-gradient(150deg, #808080 12%, transparent 12.5%, transparent 87%, #808080 87.5%, #808080),
+        linear-gradient(30deg, #808080 12%, transparent 12.5%, transparent 87%, #808080 87.5%, #808080),
+        linear-gradient(150deg, #808080 12%, transparent 12.5%, transparent 87%, #808080 87.5%, #808080),
+        linear-gradient(60deg, #80808077 25%, transparent 25.5%, transparent 75%, #80808077 75%, #80808077),
+        linear-gradient(60deg, #80808077 25%, transparent 25.5%, transparent 75%, #80808077 75%, #80808077)
+      \`,
+      backgroundSize: "40px 70px",
+      backgroundPosition: "0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px",
+    }}
+  />
+  <div className="absolute inset-0 bg-gradient-to-br from-white via-white/0 to-white dark:from-gray-950 dark:via-gray-950/0 dark:to-gray-950" />
+</div>`,
+  },
+  {
+    id: "subtle-topography-background",
     name: "Subtle Topography",
     component: <SubtleTopographyBackground />,
     code: `// Subtle Topography Background
