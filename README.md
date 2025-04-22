@@ -20,7 +20,7 @@ MIT License. Free to use in personal and commercial projects.
 
 ## 🖥 Live Link
 
-Link: https://codebgs.vercel.app
+Link: https://codevbgs.vercel.app
 
 ---
 
